@@ -208,7 +208,7 @@ for the syntax."
     #(":evergreen_tree:" 0 1 (:unicode "🌲"))
     #(":deciduous_tree:" 0 1 (:unicode "🌳"))
     #(":palm_tree:" 0 1 (:unicode "🌴"))
-    #("🌵" 0 1 (:unicode "🌵"))
+    #(":cactus:" 0 1 (:unicode "🌵"))
     #(":tulip:" 0 1 (:unicode "🌷"))
     #(":cherry_blossom:" 0 1 (:unicode "🌸"))
     #(":rose:" 0 1 (:unicode "🌹"))
@@ -972,11 +972,11 @@ But I can guess what IGNORED is used for."
     ;; show the real emoji alongside its name in the completion list
     (annotation (emoji-annotation arg))
     ;; when we find the emoji we want, replace it with the real emoji
-    ;; (everywhere in the buffer, since why not)
     (post-completion
       (save-excursion
-        (goto-char (point-min))
-        (replace-string arg (get-text-property 0 :unicode arg))))))
+        (kill-region (- (point) (length arg)) (point))
+        (insert (get-text-property 0 :unicode arg)))
+      (goto-char (1+ (point))))))
 
 (defun company-emoji-init ()
   "Add emoji to the company backends."
