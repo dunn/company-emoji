@@ -988,10 +988,8 @@ far.  Sometimes ARG is a single candidate, as when COMMAND is
     (annotation (emoji-annotation arg))
     ;; when we find the emoji we want, replace it with the real emoji
     (post-completion
-      (save-excursion
-        (kill-region (- (point) (length arg)) (point))
-        (insert (get-text-property 0 :unicode arg)))
-      (goto-char (1+ (point))))))
+      (kill-region (- (point) (length arg)) (point))
+      (insert (get-text-property 0 :unicode arg)))))
 
 (defun company-emoji-init ()
   "Add emoji to the company backends."
