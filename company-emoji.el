@@ -946,6 +946,11 @@ for the syntax."
     #(":clock1030:" 0 1 (:unicode "🕥"))
     #(":clock1130:" 0 1 (:unicode "🕦"))
     #(":clock1230:" 0 1 (:unicode "🕧"))
+    #(":skin-tone-1:" 0 1 (:unicode "🏿"))
+    #(":skin-tone-2:" 0 1 (:unicode "🏾"))
+    #(":skin-tone-3:" 0 1 (:unicode "🏽"))
+    #(":skin-tone-4:" 0 1 (:unicode "🏼"))
+    #(":skin-tone-5:" 0 1 (:unicode "🏻"))
     )
   )
 
