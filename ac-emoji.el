@@ -932,14 +932,13 @@ Ordered as given by the Apple emoji picker for easier manual mapping."
     )
   )
 
-(defvar ac-source-emoji
-  '((candidates . ac-emoji-candidates)))
-
-(defun ac-emoji-swarm ()
+(defun ac-emoji-setup ()
   "Start auto-complete mode and add the emoji to the auto-complete sources list.
 Meant to be called with hooks."
   (auto-complete-mode)
-  (setq ac-sources '(ac-source-emoji)))
+  (ac-define-source "emoji"
+    '((candidates . ac-emoji-candidates)))
+  (add-to-list 'ac-sources 'ac-source-emoji))
 
 (provide 'ac-emoji)
 
