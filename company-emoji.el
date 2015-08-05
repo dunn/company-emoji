@@ -5,7 +5,7 @@
 ;; Author: Alex Dunn <dunn.alex@gmail.com>
 ;; URL:
 ;; Version: 0.1.0
-;; Package-Requires: ((cl-lib "0.5") (company "0.8.12"))
+;; Package-Requires: ((cl-lib "0.5") (company "0.8.0"))
 ;; Keywords: emoji company honk
 ;; Prefix: company-emoji
 
