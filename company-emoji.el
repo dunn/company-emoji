@@ -981,7 +981,7 @@ far.  Sometimes ARG is a single candidate, as when COMMAND is
     (prefix (company-grab "\:[a-zA-Z0-9-]*"))
     (candidates
       ;; filter based on what's already been typed
-      (remove-if-not
+      (cl-remove-if-not
         (lambda (c) (string-prefix-p arg c))
         (emoji-list)))
     ;; show the real emoji alongside its name in the completion list
