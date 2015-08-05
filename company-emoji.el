@@ -960,12 +960,22 @@ for the syntax."
 
 (defun company-emoji (command &optional arg &rest ignored)
   "Provide a backend for company to complete emoji-words.
-Company-mode is poorly documented so I can't yet tell you \
-what COMMAND means exactly, nor how ARG is parsed.
-But I can guess what IGNORED is used for."
-  (interactive (list 'interactive))
+
+From company.el (approx L336):
+
+'Each back-end is a function that takes a variable number of \
+arguments.  The first argument is the command requested from the \
+back-end. The second argument is the prefix to be completed.
+The return value should be a list of candidates that match the
+prefix.'
+
+company.el calls this function, and passes a COMMAND to it that \
+depends on the context: 'prefix', 'candidates', 'annotation',
+etc.  In some contexts it also passes ARG, which is (as mentioned
+above) the list of candidates that match what has been typed so
+far.  Sometimes ARG is a single candidate, as when COMMAND is
+'annotation' or 'post-completion'."
   (cl-case command
-    (interactive (company-begin-backend 'company-emoji))
     ;; 'prefix' has too many meanings in emacs lisp but here we're
     ;; specifying what the string we're completing should begin with
     (prefix (company-grab "\:[a-zA-Z0-9-]*"))
