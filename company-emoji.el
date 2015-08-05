@@ -1,13 +1,13 @@
-;;; ac-emoji.el --- auto-complete source for emoji
+;;; company-emoji.el --- company-mode backend for emoji
 
 ;; Copyright (C) 2015 Alex Dunn
 
 ;; Author: Alex Dunn <dunn.alex@gmail.com>
 ;; URL:
 ;; Version: 0.1.0
-;; Package-Requires: ((auto-complete "1.5.0"))
-;; Keywords: emoji auto-complete honk
-;; Prefix: ac-emoji
+;; Package-Requires: ((cl-lib "0.5") (company "0.8.12"))
+;; Keywords: emoji company honk
+;; Prefix: company-emoji
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -28,16 +28,16 @@
 
 ;;; Code:
 
-(require 'auto-complete)
+(require 'cl-lib)
+(require 'company)
 
 ;;
 
-(defconst ac-emoji-version "0.1.0")
+(defconst company-emoji-version "0.1.0")
 
-(defun ac-emoji-candidates ()
-  "Return a list of all the :emoji: in auto-complete candidate format.
-Ordered as given by the Apple emoji picker for easier manual mapping."
-  '(
+(defun emoji-list ()
+  "Honk."
+  (list
     ":grinning:"
     ":grin:"
     ":joy:"
@@ -936,17 +936,19 @@ Ordered as given by the Apple emoji picker for easier manual mapping."
     )
   )
 
-;;;###autoload
-(defun ac-emoji-setup ()
-  "Start auto-complete mode and add the emoji to the auto-complete sources list."
-  (interactive)
-  (auto-complete-mode 1)
-  (ac-define-source emoji
-    '((candidates . (ac-emoji-candidates))))
-  (setq ac-sources (append ac-sources ac-source-emoji)))
+(defun company-emoji (command &optional arg &rest ignored)
+  "Honk."
+  (interactive (list 'interactive))
+  (cl-case command
+    (interactive (company-begin-backend 'company-emoji))
+    (prefix (company-grab "\:[a-zA-Z0-9-]+"))
+    (candidates
+      (remove-if-not
+        (lambda (c) (string-prefix-p arg c))
+        (emoji-list)))))
 
-;; (ac-emoji-setup)
+(setq company-backends '(company-emoji))
 
-(provide 'ac-emoji)
+(provide 'company-emoji)
 
-;;; ac-emoji.el ends here
+;;; company-emoji.el ends here
