@@ -30,10 +30,14 @@
 
 (require 'auto-complete)
 
+;;
+
+(defconst ac-emoji-version "0.1.0")
+
 (defun ac-emoji-candidates ()
   "Return a list of all the :emoji: in auto-complete candidate format.
 Ordered as given by the Apple emoji picker for easier manual mapping."
-  (list
+  '(
     ":grinning:"
     ":grin:"
     ":joy:"
@@ -932,13 +936,16 @@ Ordered as given by the Apple emoji picker for easier manual mapping."
     )
   )
 
+;;;###autoload
 (defun ac-emoji-setup ()
-  "Start auto-complete mode and add the emoji to the auto-complete sources list.
-Meant to be called with hooks."
-  (auto-complete-mode)
-  (ac-define-source "emoji"
-    '((candidates . ac-emoji-candidates)))
-  (add-to-list 'ac-sources 'ac-source-emoji))
+  "Start auto-complete mode and add the emoji to the auto-complete sources list."
+  (interactive)
+  (auto-complete-mode 1)
+  (ac-define-source emoji
+    '((candidates . (ac-emoji-candidates))))
+  (setq ac-sources (append ac-sources ac-source-emoji)))
+
+;; (ac-emoji-setup)
 
 (provide 'ac-emoji)
 
