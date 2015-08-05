@@ -751,7 +751,7 @@ for the syntax."
     #(":ideograph_advantage:" 0 1 (:unicode "🉐"))
     #(":white_flower:" 0 1 (:unicode "💮"))
     #(":secret:" 0 1 (:unicode "㊙️"))
-    #("️:congratulations:" 0 1 (:unicode "️㊗️"))
+    #(":congratulations:" 0 1 (:unicode "㊗️"))
     #(":u5408:" 0 1 (:unicode "🈴"))
     #(":u6e80:" 0 1 (:unicode "🈵"))
     #(":u7981:" 0 1 (:unicode "🈲"))
