@@ -961,7 +961,8 @@ But I can guess what IGNORED is used for."
   (interactive (list 'interactive))
   (cl-case command
     (interactive (company-begin-backend 'company-emoji))
-    ;; 'prefix' has too many meanings in emacs lisp
+    ;; 'prefix' has too many meanings in emacs lisp but here we're
+    ;; specifying what the string we're completing should begin with
     (prefix (company-grab "\:[a-zA-Z0-9-]*"))
     (candidates
       ;; filter based on what's already been typed
