@@ -989,7 +989,6 @@ is a single candidate, as when COMMAND is 'annotation' or
 (defun company-emoji-init ()
   "Add emoji to the company backends."
   (interactive)
-  (company-mode 1)
   (add-to-list 'company-backends 'company-emoji))
 
 (provide 'company-emoji)
