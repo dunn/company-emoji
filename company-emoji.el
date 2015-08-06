@@ -47,9 +47,10 @@
 (defconst company-emoji-version "1.0.0")
 
 (defun company-emoji-list ()
-  "Return the propertized list of emoji.
-See https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Props-and-Strings.html \
-for the syntax."
+  "Return the propertized list of emoji."
+;; See
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Props-and-Strings.html
+;; for the syntax.
   (list
     #(":grinning:" 0 1 (:unicode "😀"))
     #(":grin:" 0 1 (:unicode "😁"))
@@ -962,20 +963,12 @@ for the syntax."
 (defun company-emoji (command &optional arg &rest ignored)
   "Provide a backend for company to complete emoji-words.
 
-From company.el (approx L336):
-
-'Each back-end is a function that takes a variable number of \
-arguments.  The first argument is the command requested from the \
-back-end. The second argument is the prefix to be completed.
-The return value should be a list of candidates that match the
-prefix.'
-
-company.el calls this function, and passes a COMMAND to it that \
+company.el calls this function, and passes a COMMAND to it that
 depends on the context: 'prefix', 'candidates', 'annotation',
-etc.  In some contexts it also passes ARG, which is (as mentioned
-above) the list of candidates that match what has been typed so
-far.  Sometimes ARG is a single candidate, as when COMMAND is
-'annotation' or 'post-completion'."
+etc.  In some contexts it also passes ARG, which is the list of
+candidates that match what has been typed so far.  Sometimes ARG
+is a single candidate, as when COMMAND is 'annotation' or
+'post-completion'.  Other arguments are IGNORED."
   (cl-case command
     ;; 'prefix' has too many meanings in emacs lisp but here we're
     ;; specifying what the string we're completing should begin with
