@@ -23,7 +23,7 @@ becomes 🐱, etc.)
 
 If you’re using the cocoa version of Emacs (i.e., if built
  `‐-with-ns`, or `--with-cocoa` using Homebrew), you’ll need to add
- something like this to your init file:
+ something like this to your init file (thanks [@waymondo](https://github.com/waymondo)!):
 
 ```elisp
 (defun darwin-set-emoji-font (frame)
