@@ -958,6 +958,7 @@ for the syntax."
   "Return a formatted annotation for completion candidate S."
   (format " %s" (get-text-property 0 :unicode s)))
 
+;;;###autoload
 (defun company-emoji (command &optional arg &rest ignored)
   "Provide a backend for company to complete emoji-words.
 
@@ -991,6 +992,7 @@ far.  Sometimes ARG is a single candidate, as when COMMAND is
       (kill-region (- (point) (length arg)) (point))
       (insert (get-text-property 0 :unicode arg)))))
 
+;;;###autoload
 (defun company-emoji-init ()
   "Add emoji to the company backends."
   (interactive)
