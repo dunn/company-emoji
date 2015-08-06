@@ -6,13 +6,13 @@ providing autocompletion for emoji. 🆒💦
 ## setup
 
 Add `company-emoji.el` to your load-path, then add something like the
-following to your init file:
+following to your init file (`company-emoji-init` doesn’t start
+company-mode):
 
 ```elisp
 (require 'company-emoji)
+(add-hook 'markdown-mode-hook 'company-mode)
 (add-hook 'markdown-mode-hook 'company-emoji-init)
-(add-hook 'mail-mode-hook 'company-emoji-init)
-(add-hook 'text-mode-hook 'company-emoji-init)
 ```
 
 After selecting an emoji-word from the completion-list, it will be
