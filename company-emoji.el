@@ -984,9 +984,9 @@ far.  Sometimes ARG is a single candidate, as when COMMAND is
       ;; filter based on what's already been typed
       (cl-remove-if-not
         (lambda (c) (string-prefix-p arg c))
-        (emoji-list)))
+        (company-emoji-list)))
     ;; show the real emoji alongside its name in the completion list
-    (annotation (emoji-annotation arg))
+    (annotation (company-emoji-annotation arg))
     ;; when we find the emoji we want, replace it with the real emoji
     (post-completion
       (kill-region (- (point) (length arg)) (point))
