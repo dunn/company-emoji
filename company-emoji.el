@@ -4,7 +4,7 @@
 
 ;; Author: Alex Dunn <dunn.alex@gmail.com>
 ;; URL: https://github.com/dunn/company-emoji.git
-;; Version: 0.1.0
+;; Version: 1.0.0
 ;; Package-Requires: ((cl-lib "0.5") (company "0.8.0"))
 ;; Keywords: emoji company honk
 ;; Prefix: company-emoji
@@ -44,9 +44,9 @@
 
 ;; the other stuff
 
-(defconst company-emoji-version "0.1.0")
+(defconst company-emoji-version "1.0.0")
 
-(defun emoji-list ()
+(defun company-emoji-list ()
   "Return the propertized list of emoji.
 See https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Props-and-Strings.html \
 for the syntax."
@@ -954,7 +954,7 @@ for the syntax."
     )
   )
 
-(defun emoji-annotation (s)
+(defun company-emoji-annotation (s)
   "Return a formatted annotation for completion candidate S."
   (format " %s" (get-text-property 0 :unicode s)))
 
