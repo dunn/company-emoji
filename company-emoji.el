@@ -4,7 +4,7 @@
 
 ;; Author: Alex Dunn <dunn.alex@gmail.com>
 ;; URL: https://github.com/dunn/company-emoji.git
-;; Version: 1.0.0
+;; Version: 2.0.0
 ;; Package-Requires: ((cl-lib "0.5") (company "0.8.0"))
 ;; Keywords: emoji company honk
 ;; Prefix: company-emoji
@@ -44,7 +44,7 @@
 
 ;; the other stuff
 
-(defconst company-emoji-version "1.0.0")
+(defconst company-emoji-version "2.0.0")
 
 (defun company-emoji-list ()
   "Return the propertized list of emoji."
