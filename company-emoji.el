@@ -42,11 +42,27 @@
 (require 'cl-lib)
 (require 'company)
 
-;; the other stuff
+;; version string
 
 (defconst company-emoji-version "2.0.0")
 
-(defun company-emoji-list ()
+;; customize
+
+(defgroup company-emoji nil
+  "Company-mode backend for autocompleting emoji"
+  :group 'company)
+
+(defcustom company-emoji-aliases '( (:man-woman-boy: . ":family:")
+                                    (:woman-kiss-man: . ":couplekiss:")
+                                    (:woman_man_holding_hands: . ":couple:")
+                                    (:woman-heart-man: . ":couple_with_heart:"))
+  "Alternate shortcodes for emoji."
+  :group 'company-emoji
+  :type '(alist :key-type symbol :value-type string))
+
+;; the actual code things
+
+(defun company-emoji--create-list ()
   "Return the propertized list of emoji."
 ;; See
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Props-and-Strings.html
@@ -126,7 +142,7 @@
     #(":girl:" 0 1 (:unicode "👧"))
     #(":man:" 0 1 (:unicode "👨"))
     #(":woman:" 0 1 (:unicode "👩"))
-    #(":man-woman-boy:" 0 1 (:unicode "👪"))
+    #(":family:" 0 1 (:unicode "👪"))
     #(":man-woman-girl:" 0 1 (:unicode "👨‍👩‍👧"))
     #(":man-woman-girl-boy:" 0 1 (:unicode "👨‍👩‍👧‍👦"))
     #(":man-woman-boy-boy:" 0 1 (:unicode "👨‍👩‍👦‍👦"))
@@ -141,7 +157,7 @@
     #(":man-man-girl-boy:" 0 1 (:unicode "👨‍👨‍👧‍👦"))
     #(":man-man-boy-boy:" 0 1 (:unicode "👨‍👨‍👦‍👦"))
     #(":man-man-girl-girl:" 0 1 (:unicode "👨‍👨‍👧‍👧"))
-    #(":woman_man_holding_hands:" 0 1 (:unicode "👫"))
+    #(":couple:" 0 1 (:unicode "👫"))
     #(":two_men_holding_hands:" 0 1 (:unicode "👬"))
     #(":two_women_holding_hands:" 0 1 (:unicode "👭"))
     #(":dancers:" 0 1 (:unicode "👯"))
@@ -173,10 +189,10 @@
     #(":person_frowning:" 0 1 (:unicode "🙍"))
     #(":massage:" 0 1 (:unicode "💆"))
     #(":haircut:" 0 1 (:unicode "💇"))
-    #(":woman-heart-man:" 0 1 (:unicode "💑"))
+    #("couple_with_heart:" 0 1 (:unicode "💑"))
     #(":woman-heart-woman:" 0 1 (:unicode "👩‍❤️‍👩"))
     #(":man-heart-man:" 0 1 (:unicode "👨‍❤️‍👨"))
-    #(":woman-kiss-man:" 0 1 (:unicode "💏"))
+    #(":couplekiss:" 0 1 (:unicode "💏"))
     #(":woman-kiss-woman:" 0 1 (:unicode "👩‍❤️‍💋‍👩"))
     #(":man-kiss-man:" 0 1 (:unicode "👨‍❤️‍💋‍👨"))
     #(":raised_hands:" 0 1 (:unicode "🙌"))
@@ -955,9 +971,43 @@
     )
   )
 
-(defun company-emoji-annotation (s)
+(defun company-emoji--annotation (s)
   "Return a formatted annotation for completion candidate S."
   (format " %s" (get-text-property 0 :unicode s)))
+
+(defun company-emoji--add-aliases (aliases candidates)
+  "Add the emoji ALIASES to the list of completion CANDIDATES and return the new list."
+  (dolist (elem aliases candidates)
+    ;; * `aliased` will be nil if the alias alist is somehow
+    ;;   malformed—if there's no second element.
+    ;;
+    ;; * `emoji-string` will be nil if the current alias is invalid—if
+    ;;   the shortcode that an alias has been assigned to does not
+    ;;   correspond to any emoji.  For example, if you added (:kermit:
+    ;;   . ":toad:") to your list of custom aliases, that would be an
+    ;;   invalid assignment since :toad: is not a real shortcode—we
+    ;;   only have :frog:.  As long as this is a valid alias, then
+    ;;   emoji-string is the propertized text that the alias points
+    ;;   to; something like #(":imp:" 0 1 (:unicode "👿"))
+    (let* ((aliased (cdr elem))
+            (emoji-string (car (member aliased candidates))))
+      (if (and aliased emoji-string)
+        ;; * `new-item` is what will become a new propertized string
+        ;;   that we add to the list of completion candidates.  It
+        ;;   starts its life as the string version of the current
+        ;;   alias; from (:man-woman-boy: . ":family:"), the string
+        ;;   assigned to `new-item` would be ":man-woman-boy:"
+        ;;
+        ;; * `unicode` is the unicode character to which we want our
+        ;;   alias to point; we retrieve it from `emoji-string`.
+        (let ((new-item (symbol-name (car elem)))
+               (unicode (get-text-property 0 :unicode emoji-string)))
+          ;; Propertize the `new-item` string.  The string returned
+          ;; from `symbol-name` already seems to have some properties,
+          ;; so overwrite them with `set-text-properties`, instead of
+          ;; simply adding a new property with `add-text-property`.
+          (set-text-properties 0 1 (list ':unicode unicode) new-item)
+          (setq candidates (cons new-item candidates)))))))
 
 ;;;###autoload
 (defun company-emoji (command &optional arg &rest ignored)
@@ -969,6 +1019,12 @@ etc.  In some contexts it also passes ARG, which is the list of
 candidates that match what has been typed so far.  Sometimes ARG
 is a single candidate, as when COMMAND is 'annotation' or
 'post-completion'.  Other arguments are IGNORED."
+
+  ;; First, update the list of candidates by adding the custom
+  ;; aliases:
+  (setq company-emoji-list (company-emoji--add-aliases
+                             company-emoji-aliases
+                             (company-emoji--create-list)))
   (cl-case command
     ;; 'prefix' has too many meanings in emacs lisp but here we're
     ;; specifying what the string we're completing should begin with
@@ -977,9 +1033,9 @@ is a single candidate, as when COMMAND is 'annotation' or
       ;; filter based on what's already been typed
       (cl-remove-if-not
         (lambda (c) (string-prefix-p arg c))
-        (company-emoji-list)))
+        company-emoji-list))
     ;; show the real emoji alongside its name in the completion list
-    (annotation (company-emoji-annotation arg))
+    (annotation (company-emoji--annotation arg))
     ;; when we find the emoji we want, replace it with the real emoji
     (post-completion
       (kill-region (- (point) (length arg)) (point))

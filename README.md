@@ -19,6 +19,31 @@ After selecting an emoji-word from the completion-list, it will be
 replaced by the real unicode emoji (`:cactus:` becomes 🌵, `:cat:`
 becomes 🐱, etc.)
 
+### custom shortcodes
+
+You can add shortcode aliases by modifying `company-emoji-aliases`.
+Run `M-x customize-variable [RET] company-emoji-aliases` to bring up
+company-emoji’s customization pane, then add or remove aliases to your
+taste:
+
+```
+Hide Company Emoji Aliases:
+[INS] [DEL] Symbol: :man-woman-boy:
+            String: :family:
+[INS] [DEL] Symbol: :woman-kiss-man:
+            String: :couplekiss:
+[INS] [DEL] Symbol: :woman_man_holding_hands:
+            String: :couple:
+[INS] [DEL] Symbol: :woman-heart-man:
+            String: :couple_with_heart:
+[INS] [DEL] Symbol: :oop:
+            String: :speak_no_evil:
+[INS]
+```
+
+(“Symbol” designates the user-defined alias, and “string” designates
+the original shortcode you want your alias to mimick.)
+
 ### cocoa/ns emacs
 
 If you’re using the cocoa version of Emacs (i.e., if built
