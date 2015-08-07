@@ -1,5 +1,8 @@
 # company-emoji.el
 
+[![Melpa Status](http://melpa.org/packages/company-emoji-badge.svg)](http://melpa.org/#/company-emoji)
+[![Melpa Stable Status](http://stable.melpa.org/packages/company-emoji-badge.svg)](http://stable.melpa.org/#/company-emoji)
+
 [company-mode](https://github.com/company-mode/company-mode/) backend
 providing autocompletion for emoji. 🆒💦
 
