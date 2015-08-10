@@ -40,7 +40,9 @@
 ;; replaced by the real unicode emoji (`:cactus:` becomes 🌵, `:cat:`
 ;; becomes 🐱, etc.)
 
-;; ### custom shortcodes
+;; ### custom variables
+
+;; #### aliases
 
 ;; You can add shortcode aliases by modifying `company-emoji-aliases`.
 ;; Run `M-x customize-variable [RET] company-emoji-aliases` to bring up
@@ -62,6 +64,12 @@
 
 ;; (“Symbol” designates the user-defined alias, and “string” designates
 ;; the original shortcode you want your alias to mimick.)
+
+;; #### unicode replacement
+
+;; By default, `:cat:` is replaced with 🐱 upon completion, but that can
+;; be turned off by setting the variable `company-emoji-insert-unicode`
+;; to `nil`.
 
 ;; ### cocoa/ns emacs
 
@@ -103,6 +111,11 @@
   "Alternate shortcodes for emoji."
   :group 'company-emoji
   :type '(alist :key-type symbol :value-type string))
+
+(defcustom company-emoji-insert-unicode t
+  "Replace the :shortcode: with the real Unicode character upon completion."
+  :group 'company-emoji
+  :type 'boolean)
 
 ;; the actual code things
 
@@ -1081,9 +1094,12 @@ is a single candidate, as when COMMAND is 'annotation' or
     ;; show the real emoji alongside its name in the completion list
     (annotation (company-emoji--annotation arg))
     ;; when we find the emoji we want, replace it with the real emoji
+    ;; (assuming company-emoji-insert-unicode is set to true)
     (post-completion
-      (kill-region (- (point) (length arg)) (point))
-      (insert (get-text-property 0 :unicode arg)))))
+      (if company-emoji-insert-unicode
+        (progn
+          (kill-region (- (point) (length arg)) (point))
+          (insert (get-text-property 0 :unicode arg)))))))
 
 ;;;###autoload
 (defun company-emoji-init ()

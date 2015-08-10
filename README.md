@@ -22,7 +22,9 @@ After selecting an emoji-word from the completion-list, it will be
 replaced by the real unicode emoji (`:cactus:` becomes 🌵, `:cat:`
 becomes 🐱, etc.)
 
-### custom shortcodes
+### custom variables
+
+#### aliases
 
 You can add shortcode aliases by modifying `company-emoji-aliases`.
 Run `M-x customize-variable [RET] company-emoji-aliases` to bring up
@@ -46,6 +48,12 @@ Hide Company Emoji Aliases:
 
 (“Symbol” designates the user-defined alias, and “string” designates
 the original shortcode you want your alias to mimick.)
+
+#### unicode replacement
+
+By default, `:cat:` is replaced with 🐱 upon completion, but that can
+be turned off by setting the variable `company-emoji-insert-unicode`
+to `nil`.
 
 ### cocoa/ns emacs
 
