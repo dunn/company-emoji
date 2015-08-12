@@ -29,7 +29,7 @@ function bump (vs, level) {
   } else if (level == "minor") {
     vs = substr(vs, 0, 1) "." (substr(vs, 3, 1) + 1) ".0";
   } else if (level == "patch") {
-    vs = substr(vs, 0, 1) "." substr(vs, 3, 1) "." (substr(vs, 5, 1) + 1)
+    vs = substr(vs, 0, 4) (substr(vs, 5, 1) + 1)
   }
   return vs;
 }
