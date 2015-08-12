@@ -1,5 +1,8 @@
 .PHONY: compile clean major minor patch
 
+prefix ?= /usr/local
+lispdir?= $(prefix)/share/emacs/site-lisp/company-emoji
+
 emacs ?= $(shell which emacs)
 flags ?= --directory .
 
@@ -10,6 +13,10 @@ default: compile
 
 compile: $(LISPS)
 	$(emacs) --batch -Q $(flags) -f batch-byte-compile $<
+
+install: compile
+	mkdir -p $(lispdir)
+	install -m 644 $(LISPS) $(lispdir)
 
 clean:
 	rm *.elc *~
