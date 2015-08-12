@@ -4,7 +4,7 @@ prefix ?= /usr/local
 lispdir?= $(prefix)/share/emacs/site-lisp/company-emoji
 
 emacs ?= $(shell which emacs)
-flags ?= --directory .
+flags ?= --directory /usr/local/share/emacs/site-lisp/company
 
 BASE_FILE = company-emoji.el
 LISPS = $(BASE_FILE)
