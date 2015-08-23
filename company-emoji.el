@@ -1061,8 +1061,8 @@
                (unicode (get-text-property 0 :unicode emoji-string)))
           ;; Propertize the `new-item` string.  The string returned
           ;; from `symbol-name` already seems to have some properties,
-          ;; so overwrite them with `set-text-properties`, instead of
-          ;; simply adding a new property with `add-text-property`.
+          ;; so overwrite them with `set-text-properties', instead of
+          ;; simply adding a new property with `add-text-property'.
           (set-text-properties 0 1 (list ':unicode unicode) new-item)
           (setq candidates (cons new-item candidates)))))))
 
