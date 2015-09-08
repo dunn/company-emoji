@@ -24,7 +24,7 @@ becomes 🐱, etc.)
 
 ### emoji font support
 
-#### cocoa/ns
+#### mac os
 
 If you’re using the cocoa version of Emacs (i.e., if built
  `‐-with-ns`, or `--with-cocoa` using Homebrew), you’ll need to add
@@ -46,7 +46,7 @@ If you’re using the cocoa version of Emacs (i.e., if built
 
 Linux users will need to do something similar, after installing a font
 with emoji support, such as [Symbola](https://zhm.github.io/symbola/) (thanks to
-[@syohex](https://github.com/syohex) for figuring this out for his
+[@syohex](https://github.com/syohex) for figuring this out for their
 [emoji backend for auto-complete](https://github.com/syohex/emacs-ac-emoji#linux-users))
  Replace “Apple Color Emoji” with the name of the emoji font.
 
