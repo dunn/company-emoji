@@ -22,6 +22,37 @@ After selecting an emoji-word from the completion-list, it will be
 replaced by the real unicode emoji (`:cactus:` becomes 🌵, `:cat:`
 becomes 🐱, etc.)
 
+### emoji font support
+
+#### cocoa/ns
+
+If you’re using the cocoa version of Emacs (i.e., if built
+ `‐-with-ns`, or `--with-cocoa` using Homebrew), you’ll need to add
+ something like this to your init file (thanks [@waymondo](https://github.com/waymondo)!):
+
+```elisp
+(defun darwin-set-emoji-font (frame)
+"Adjust the font settings of FRAME so Emacs NS/Cocoa can display emoji properly."
+  (if (eq system-type 'darwin)
+    (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") frame 'prepend)))
+;; For when emacs is started with Emacs.app
+(darwin-set-emoji-font nil)
+;; Hook for when a cocoa frame is created with emacsclient
+;; see https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Frames.html
+(add-hook 'after-make-frame-functions 'darwin-set-emoji-font)
+```
+
+#### linux
+
+Linux users will need to do something similar, after installing a font
+with emoji support, such as [Symbola](https://zhm.github.io/symbola/) (thanks to
+[@syohex](https://github.com/syohex) for figuring this out for his
+[emoji backend for auto-complete](https://github.com/syohex/emacs-ac-emoji#linux-users))
+ Replace “Apple Color Emoji” with the name of the emoji font.
+
+**NB:** The `set-fontset-font` function is apparently only available
+ when Emacs has been compiled with a window system.
+
 ### custom variables
 
 #### aliases
@@ -54,21 +85,3 @@ the original shortcode you want your alias to mimick.)
 By default, `:cat:` is replaced with 🐱 upon completion, but that can
 be turned off by setting the variable `company-emoji-insert-unicode`
 to `nil`.
-
-### cocoa/ns emacs
-
-If you’re using the cocoa version of Emacs (i.e., if built
- `‐-with-ns`, or `--with-cocoa` using Homebrew), you’ll need to add
- something like this to your init file (thanks [@waymondo](https://github.com/waymondo)!):
-
-```elisp
-(defun darwin-set-emoji-font (frame)
-"Adjust the font settings of FRAME so Emacs NS/Cocoa can display emoji properly."
-  (if (eq system-type 'darwin)
-    (set-fontset-font t 'symbol (font-spec :family "Apple Color Emoji") frame 'prepend)))
-;; For when emacs is started with Emacs.app
-(darwin-set-emoji-font nil)
-;; Hook for when a cocoa frame is created with emacsclient
-;; see https://www.gnu.org/software/emacs/manual/html_node/elisp/Creating-Frames.html
-(add-hook 'after-make-frame-functions 'darwin-set-emoji-font)
-```
