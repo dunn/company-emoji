@@ -3,8 +3,8 @@
 prefix ?= /usr/local
 lispdir?= $(prefix)/share/emacs/site-lisp/company-emoji
 
-emacs ?= $(shell which emacs)
-flags ?= --directory /usr/local/share/emacs/site-lisp/company
+emacs   ?= $(shell which emacs)
+company ?= /usr/local/share/emacs/site-lisp/company
 
 BASE_FILE = company-emoji.el
 LISPS = $(BASE_FILE)
@@ -12,14 +12,14 @@ LISPS = $(BASE_FILE)
 default: compile
 
 compile: $(LISPS)
-	$(emacs) --batch -Q $(flags) -f batch-byte-compile $<
+	$(emacs) --batch -Q --directory $(company) -f batch-byte-compile $<
 
 install: compile
 	mkdir -p $(lispdir)
-	install -m 644 $(LISPS) $(lispdir)
+	install -m 644 $(LISPS) *.elc $(lispdir)
 
 clean:
-	rm *.elc *~
+	rm *.elc
 
 temp ?= $(uuid)
 
