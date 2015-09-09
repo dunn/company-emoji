@@ -62,11 +62,16 @@
 
 ;; #### linux
 
-;; Linux users will need to do something similar, after installing a font
-;; with emoji support, such as [Symbola](https://zhm.github.io/symbola/) (thanks to
+;; Linux users will need to replace “Apple Color Emoji” with an available
+;; font with emoji support, such as
+;; [Symbola](https://zhm.github.io/symbola/) (thanks to
 ;; [@syohex](https://github.com/syohex) for figuring this out for their
-;; [emoji backend for auto-complete](https://github.com/syohex/emacs-ac-emoji#linux-users))
-;;  Replace “Apple Color Emoji” with the name of the emoji font.
+;; [emoji backend for auto-complete](https://github.com/syohex/emacs-ac-emoji#linux-users)).
+;; Symbola can be installed with `apt-get`:
+
+;; ```sh
+;; apt-get install ttf-ancient-fonts
+;; ```
 
 ;; **NB:** The `set-fontset-font` function is apparently only available
 ;;  when Emacs has been compiled with a window system.
