@@ -85,6 +85,11 @@ Hide Company Emoji Aliases:
 (“Symbol” designates the user-defined alias, and “string” designates
 the original shortcode you want your alias to mimick.)
 
+Occasionally new default aliases may be added (like :middle-finger:
+for 🖕). If you’re upgrading and have modified the
+`company-emoji-alises` variable, the new aliases will be ignored;
+you’ll need to add them manually.
+
 #### unicode replacement
 
 By default, `:cat:` is replaced with 🐱 upon completion, but that can
