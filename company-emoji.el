@@ -33,8 +33,7 @@
 ;; company-mode):
 
 ;; (require 'company-emoji)
-;; (add-hook 'markdown-mode-hook 'company-mode)
-;; (add-hook 'markdown-mode-hook 'company-emoji-init)
+;; (add-to-list 'company-backends 'company-emoji)
 
 ;; After selecting an emoji-word from the completion-list, it will be
 ;; replaced by the real unicode emoji (`:cactus:` becomes 🌵, `:cat:`
