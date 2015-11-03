@@ -29,8 +29,7 @@
 ;; ### setup
 
 ;; Add `company-emoji.el` to your load-path, then add something like the
-;; following to your init file (`company-emoji-init` doesn’t start
-;; company-mode):
+;; following to your init file:
 
 ;; (require 'company-emoji)
 ;; (add-to-list 'company-backends 'company-emoji)

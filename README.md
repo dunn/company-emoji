@@ -9,8 +9,7 @@ providing autocompletion for emoji. 🆒💦
 ## setup
 
 Add `company-emoji.el` to your load-path, then add something like the
-following to your init file (`company-emoji-init` doesn’t start
-company-mode):
+following to your init file:
 
 ```elisp
 (require 'company-emoji)
