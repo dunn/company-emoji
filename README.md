@@ -6,6 +6,8 @@
 [company-mode](https://github.com/company-mode/company-mode/) backend
 providing autocompletion for emoji. 🆒💦
 
+It uses the `emoji-list` package, included in this repository.
+
 ## setup
 
 Add `company-emoji.el` to your load-path, then add something like the

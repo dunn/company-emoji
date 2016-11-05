@@ -7,7 +7,7 @@ emacs   ?= $(shell which emacs)
 company ?= /usr/local/share/emacs/site-lisp/company
 
 BASE_FILE = company-emoji.el
-LISPS = $(BASE_FILE)
+LISPS = $(BASE_FILE) company-emoji-list.el
 
 default: compile
 
