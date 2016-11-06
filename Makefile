@@ -21,6 +21,12 @@ install: compile
 clean:
 	rm *.elc
 
+build/generate-list.rb:
+
+company-emoji-list.el: build/generate-list.rb
+	rm company-emoji-list.el
+	ruby build/generate-list.rb > company-emoji-list.el
+
 temp ?= $(uuid)
 
 major:
