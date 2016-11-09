@@ -19,7 +19,7 @@
 
 ;;; Code:
 
-(defun emoji-list-create ()
+(defun company-emoji-list-create ()
   "Return the propertized list of emoji."
 ;; See
 ;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Text-Props-and-Strings.html

@@ -24,7 +24,7 @@ clean:
 build/generate-list.rb:
 
 company-emoji-list.el: build/generate-list.rb
-	rm company-emoji-list.el
+	rm company-emoji-list.el || true
 	ruby build/generate-list.rb > company-emoji-list.el
 
 temp ?= $(uuid)
