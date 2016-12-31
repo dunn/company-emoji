@@ -125,12 +125,7 @@
   "Company-mode backend for autocompleting emoji"
   :group 'company)
 
-(defcustom company-emoji-aliases '( (:man-woman-boy: . ":family:")
-                                    (:woman-kiss-man: . ":couplekiss:")
-                                    (:woman_man_holding_hands: . ":couple:")
-                                    (:woman-heart-man: . ":couple_with_heart:")
-                                    (:middle-finger: . ":reversed-hand-with-middle-finger-extended:")
-                                    )
+(defcustom company-emoji-aliases '((:woman_man_holding_hands: . ":couple:"))
   "Alternate shortcodes for emoji."
   :group 'company-emoji
   :type '(alist :key-type symbol :value-type string))

@@ -1,46 +1,6 @@
 require 'gemoji'
 require 'date'
 
-adults = [
-  { 'man' => "\u{1f468}" },
-  { 'woman' => "\u{1f469}" }
-]
-
-children = [
-  { 'girl' => "\u{1f467}" },
-  { 'boy' => "\u{1f466}" }
-]
-
-adults.repeated_combination(2).to_a.each do |a|
-  # man-woman pairings have their own codepoint
-  if a[0] == a[1]
-    Emoji.create("#{a[0].keys.first}-heart-#{a[1].keys.first}") do |emoji|
-      raw = "#{a[0].values.first}\u{200d}\u{2764}\u{fe0f}\u{200d}#{a[1].values.first}"
-      emoji.add_unicode_alias raw
-    end
-
-    Emoji.create("#{a[0].keys.first}-kiss-#{a[1].keys.first}") do |emoji|
-      raw = "#{a[0].values.first}\u{200d}\u{2764}\u{fe0f}\u{200d}\u{1f48b}\u{200d}#{a[1].values.first}"
-      emoji.add_unicode_alias raw
-    end
-  end
-
-  children.repeated_combination(2).to_a.each do |c|
-    name = "#{a[0].keys.first}-#{a[1].keys.first}-#{c[0].keys.first}-#{c[1].keys.first}"
-    raw = "#{a[0].values.first}\u{200d}#{a[1].values.first}\u{200d}#{c[0].values.first}\u{200d}#{c[1].values.first}"
-    Emoji.create(name) do |emoji|
-      emoji.add_unicode_alias raw
-    end
-  end
-  children.repeated_combination(1).to_a.each do |c|
-    name = "#{a[0].keys.first}-#{a[1].keys.first}-#{c[0].keys.first}"
-    raw = "#{a[0].values.first}\u{200d}#{a[1].values.first}\u{200d}#{c[0].values.first}"
-    Emoji.create(name) do |emoji|
-      emoji.add_unicode_alias raw
-    end
-  end
-end
-
 Emoji.create('I am a witness') do |emoji|
   emoji.add_unicode_alias "\u{1f441}\u{200d}\u{1f5e8}"
 end
