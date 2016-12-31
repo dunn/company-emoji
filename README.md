@@ -4,7 +4,7 @@
 [![Melpa Stable Status](http://stable.melpa.org/packages/company-emoji-badge.svg)](http://stable.melpa.org/#/company-emoji)
 
 [company-mode](https://github.com/company-mode/company-mode/) backend
-providing autocompletion for emoji. 🆒💦
+providing autocompletion for emoji.  🆒💦
 
 ## setup
 
@@ -64,26 +64,17 @@ taste:
 
 ```
 Hide Company Emoji Aliases:
-[INS] [DEL] Symbol: :man-woman-boy:
-            String: :family:
-[INS] [DEL] Symbol: :woman-kiss-man:
-            String: :couplekiss:
 [INS] [DEL] Symbol: :woman_man_holding_hands:
             String: :couple:
-[INS] [DEL] Symbol: :woman-heart-man:
-            String: :couple_with_heart:
-[INS] [DEL] Symbol: :oop:
-            String: :speak_no_evil:
 [INS]
 ```
 
 (“Symbol” designates the user-defined alias, and “string” designates
 the original shortcode you want your alias to mimick.)
 
-Occasionally new default aliases may be added (like `:middle-finger:`
-for 🖕). If you’re upgrading and have modified the
-`company-emoji-aliases` variable, the new aliases will be ignored;
-you’ll need to add them manually.
+Occasionally new default aliases may be added.  If you’re upgrading
+and have modified the `company-emoji-aliases` variable, the new
+aliases will be ignored; you’ll need to add them manually.
 
 #### unicode replacement
 
