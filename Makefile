@@ -23,7 +23,7 @@ clean:
 
 build/generate-list.rb:
 
-company-emoji-list.el: build/generate-list.rb
+company-emoji-list.el: build/generate-list.rb build/Gemfile.lock
 	rm company-emoji-list.el || true
 	ruby build/generate-list.rb > company-emoji-list.el
 
