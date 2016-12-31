@@ -1,18 +1,13 @@
-GIT
-  remote: https://github.com/github/gemoji.git
-  revision: f394c85d80b3ed7a1146683a72c13e4e8985f6ce
-  specs:
-    gemoji (3.0.0.rc1)
-
 GEM
   remote: https://rubygems.org/
   specs:
+    gemoji (3.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
-  gemoji!
+  gemoji (~> 3.0)
 
 BUNDLED WITH
-   1.13.6
+   1.13.7
