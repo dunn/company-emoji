@@ -46,8 +46,8 @@ Emoji.create('I am a witness') do |emoji|
 end
 
 zwj = {
-  'male' => "\u{200d}\u{2642}",
-  'female' => "\u{200d}\u{2640}",
+  'male' => "\u{2642}",
+  'female' => "\u{2640}",
   'skin-tone-1' => "\u{1f3fb}",
   'skin-tone-2' => "\u{1f3fb}",
   'skin-tone-3' => "\u{1f3fd}",
