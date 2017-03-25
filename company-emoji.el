@@ -117,9 +117,11 @@
 (require 'company)
 (require 'company-emoji-list)
 
-;; version string
+(defconst company-emoji-version "2.5.0"
+  "Current version of company-emoji.")
 
-(defconst company-emoji-version "2.5.0")
+(defconst emojis (company-emoji-list-create)
+  "Cached list of propertized emojis.")
 
 ;; customize
 
@@ -190,7 +192,7 @@ is a single candidate, as when COMMAND is 'annotation' or
   ;; aliases:
   (let ((emoji-list (company-emoji--add-aliases
                      company-emoji-aliases
-                     (company-emoji-list-create))))
+                     emojis)))
     (cl-case command
       ;; 'prefix' has too many meanings in emacs lisp but here we're
       ;; specifying what the string we're completing should begin with
