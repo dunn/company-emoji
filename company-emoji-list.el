@@ -1,6 +1,6 @@
 ;;; company-emoji-list.el --- Unicode emoji as propertized strings
 
-;; Copyright (C) 2016 Alex Dunn
+;; Copyright (C) 2018 Alex Dunn
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by

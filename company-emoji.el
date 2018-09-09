@@ -1,10 +1,10 @@
 ;;; company-emoji.el --- company-mode backend for emoji
 
-;; Copyright (C) 2016 Alex Dunn
+;; Copyright (C) 2018 Alex Dunn
 
 ;; Author: Alex Dunn <dunn.alex@gmail.com>
 ;; URL: https://github.com/dunn/company-emoji.git
-;; Version: 2.5.0
+;; Version: 2.5.1
 ;; Package-Requires: ((cl-lib "0.5") (company "0.8.0"))
 ;; Keywords: emoji company
 ;; Prefix: company-emoji
@@ -117,7 +117,7 @@
 (require 'company)
 (require 'company-emoji-list)
 
-(defconst company-emoji-version "2.5.0"
+(defconst company-emoji-version "2.5.1"
   "Current version of company-emoji.")
 
 (defconst company-emojis (company-emoji-list-create)
