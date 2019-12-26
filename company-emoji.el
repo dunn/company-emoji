@@ -4,7 +4,7 @@
 
 ;; Author: Alex Dunn <dunn.alex@gmail.com>
 ;; URL: https://github.com/dunn/company-emoji.git
-;; Version: 2.5.1
+;; Version: 2.5.2
 ;; Package-Requires: ((cl-lib "0.5") (company "0.8.0"))
 ;; Keywords: emoji company
 ;; Prefix: company-emoji
