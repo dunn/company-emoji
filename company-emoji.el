@@ -116,11 +116,13 @@
 (require 'cl-lib)
 (require 'company)
 (require 'company-emoji-list)
+(require 'dash)
 
 (defconst company-emoji-version "2.5.1"
   "Current version of company-emoji.")
 
-(defconst company-emojis (company-emoji-list-create)
+(defconst company-emojis (-sort 'string-lessp
+																(company-emoji-list-create))
   "Cached list of propertized emojis.")
 
 ;; customize
