@@ -21,11 +21,11 @@ install: compile
 clean:
 	rm *.elc
 
-build/generate-list.rb:
+build/generate_list.rb:
 
-company-emoji-list.el: build/generate-list.rb build/Gemfile.lock
+company-emoji-list.el: build/generate_list.rb build/Gemfile.lock
 	rm company-emoji-list.el || true
-	ruby build/generate-list.rb > company-emoji-list.el
+	ruby build/generate_list.rb > company-emoji-list.el
 
 temp ?= $(uuid)
 
