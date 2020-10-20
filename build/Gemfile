@@ -2,4 +2,4 @@
 
 source 'https://rubygems.org'
 
-gem 'gemoji'
+gem 'gemoji', '>= 4.0.0.rc2'
