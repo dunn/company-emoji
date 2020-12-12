@@ -23,7 +23,9 @@ zwj.each do |name, raw|
   end
 end
 
-propertized_strings = Emoji.all.uniq.reject { |e| e.raw.nil? }.map do |e|
+propertized_strings = Emoji.all.uniq.reject do |e|
+  e.raw.nil?
+end.sort_by(&:name).map do |e|
   "    #(\":#{e.name}:\" 0 1 (:unicode \"#{e.raw}\"))"
 end.join("\n")
 
