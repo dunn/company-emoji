@@ -198,7 +198,7 @@ is a single candidate, as when COMMAND is 'annotation' or
     (cl-case command
       ;; 'prefix' has too many meanings in emacs lisp but here we're
       ;; specifying what the string we're completing should begin with
-      (prefix (company-grab "\:[a-zA-Z0-9-_]*"))
+      (prefix (company-grab "\:[a-zA-Z0-9-_+]*"))
       (candidates
        ;; filter based on what's already been typed
        (cl-remove-if-not
