@@ -27,7 +27,7 @@ company-emoji-list.el: build/generate_list.rb build/Gemfile.lock
 	rm company-emoji-list.el || true
 	ruby build/generate_list.rb > company-emoji-list.el
 
-temp ?= $(uuid)
+temp ?= $(uuidgen)
 
 major:
 	VERSION_SHIFT=major build/version.awk $(BASE_FILE) > $(temp).el
